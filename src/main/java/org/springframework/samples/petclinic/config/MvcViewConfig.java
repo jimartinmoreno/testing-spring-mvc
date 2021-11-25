@@ -49,48 +49,48 @@ import java.util.List;
 
 @Configuration
 public class MvcViewConfig {
-	
-	@Bean
-	public ContentNegotiatingViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
-	 	ContentNegotiatingViewResolver contentNegotiatingViewResolver = new ContentNegotiatingViewResolver();
-	 	List<ViewResolver> viewResolvers = new ArrayList<ViewResolver>();
-	 	viewResolvers.add(internalResourceViewResolver());
-	 	viewResolvers.add(beanNameViewResolver());
-		contentNegotiatingViewResolver.setViewResolvers(viewResolvers );
-		contentNegotiatingViewResolver.setContentNegotiationManager(manager);
-		return contentNegotiatingViewResolver;
-	}
-	
-	@Bean
-	@Description("Default viewClass: JSTL view (JSP with html output)")
-	public ViewResolver internalResourceViewResolver() {
-		// Example: a logical view name of 'vets' is mapped to
-		// '/WEB-INF/jsp/vets.jsp'
-		InternalResourceViewResolver bean = new InternalResourceViewResolver();
-		bean.setViewClass(JstlView.class);
-		bean.setPrefix("/WEB-INF/jsp/");
-		bean.setSuffix(".jsp");
-		return bean;
-	}
 
-	@Bean
-	@Description("Used for 'xml' views")
-	public ViewResolver beanNameViewResolver() {
-		return new BeanNameViewResolver();
-	}
+    @Bean
+    public ContentNegotiatingViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
+        ContentNegotiatingViewResolver contentNegotiatingViewResolver = new ContentNegotiatingViewResolver();
+        List<ViewResolver> viewResolvers = new ArrayList<ViewResolver>();
+        viewResolvers.add(internalResourceViewResolver());
+        viewResolvers.add(beanNameViewResolver());
+        contentNegotiatingViewResolver.setViewResolvers(viewResolvers);
+        contentNegotiatingViewResolver.setContentNegotiationManager(manager);
+        return contentNegotiatingViewResolver;
+    }
 
-	@Bean(name = "vets/vetList.xml")
-	@Description("Renders an XML view. Used by the BeanNameViewResolver")
-	public MarshallingView marshallingView() {
-		return new MarshallingView(marshaller());
-	}
+    @Bean
+    @Description("Default viewClass: JSTL view (JSP with html output)")
+    public ViewResolver internalResourceViewResolver() {
+        // Example: a logical view name of 'vets' is mapped to
+        // '/WEB-INF/jsp/vets.jsp'
+        InternalResourceViewResolver bean = new InternalResourceViewResolver();
+        bean.setViewClass(JstlView.class);
+        bean.setPrefix("/WEB-INF/jsp/");
+        bean.setSuffix(".jsp");
+        return bean;
+    }
 
-	@Bean
-	@Description("Object-XML mapping declared using annotations inside 'Vets'")
-	public Marshaller marshaller() {
-		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setClassesToBeBound(Vets.class);
-		return marshaller;
-	}
+    @Bean
+    @Description("Used for 'xml' views")
+    public ViewResolver beanNameViewResolver() {
+        return new BeanNameViewResolver();
+    }
+
+    @Bean(name = "vets/vetList.xml")
+    @Description("Renders an XML view. Used by the BeanNameViewResolver")
+    public MarshallingView marshallingView() {
+        return new MarshallingView(marshaller());
+    }
+
+    @Bean
+    @Description("Object-XML mapping declared using annotations inside 'Vets'")
+    public Marshaller marshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        marshaller.setClassesToBeBound(Vets.class);
+        return marshaller;
+    }
 
 }

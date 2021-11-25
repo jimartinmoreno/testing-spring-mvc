@@ -15,12 +15,11 @@
  */
 package org.springframework.samples.petclinic.repository.jdbc;
 
+import org.springframework.jdbc.core.RowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
-
-import org.springframework.jdbc.core.RowMapper;
 
 /**
  * {@link RowMapper} implementation mapping data from a {@link ResultSet} to the corresponding properties
