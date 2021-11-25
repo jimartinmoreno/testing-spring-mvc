@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestPropertySource("classpath:laurel.properties")
 @ActiveProfiles("externalized")
 @SpringJUnitConfig(classes = LaurelPropertiesTest.TestConfig.class)
-public class LaurelPropertiesTest {
+class LaurelPropertiesTest {
 
     @Configuration
     @ComponentScan("org.springframework.samples.petclinic.sfg")
