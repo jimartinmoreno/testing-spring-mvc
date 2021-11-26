@@ -8,7 +8,9 @@
 
     <name>tb2g-testing-spring</name>
     <packaging>war</packaging>
-    <description>*** FORK FROM ORIGINAL SPRING PROJECT TO DEMO TESTING FEATURES OF SPRING *** A Spring Framework application based on JSP, Spring MVC, Spring Data JPA, Hibernate and JDBC</description>
+    <description>*** FORK FROM ORIGINAL SPRING PROJECT TO DEMO TESTING FEATURES OF SPRING *** A Spring Framework
+        application based on JSP, Spring MVC, Spring Data JPA, Hibernate and JDBC
+    </description>
     <url>https://github.com/spring-petclinic/</url>
 
     <properties>
@@ -299,7 +301,12 @@
             <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb.version}</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <!-- Maven plugin versions are mentioned in order to guarantee the build reproducibility in the long term -->
@@ -390,7 +397,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
+                    <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory
+                    </wroManagerFactory>
                     <cssDestinationFolder>${project.build.directory}/petclinic/resources/css</cssDestinationFolder>
                     <wroFile>${basedir}/src/main/wro/wro.xml</wroFile>
                     <extraConfigFile>${basedir}/src/main/wro/wro.properties</extraConfigFile>
@@ -415,7 +423,6 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty-maven-plugin.version}</version>
             </plugin>
-
         </plugins>
     </build>
 
@@ -442,7 +449,7 @@
                 </dependency>
             </dependencies>
         </profile>
-   </profiles>
+    </profiles>
 
     <repositories>
         <repository>

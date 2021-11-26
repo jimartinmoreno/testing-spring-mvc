@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.*;
@@ -34,7 +35,7 @@ import java.util.Collection;
  *
  * @author Michael Isvy
  */
-@Service
+@Service("clinicService")
 public class ClinicServiceImpl implements ClinicService {
 
     private PetRepository petRepository;

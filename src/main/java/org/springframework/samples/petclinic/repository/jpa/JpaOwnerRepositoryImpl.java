@@ -74,7 +74,6 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
         } else {
             this.em.merge(owner);
         }
-
     }
 
 }

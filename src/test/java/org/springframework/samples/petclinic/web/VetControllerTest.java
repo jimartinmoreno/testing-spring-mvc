@@ -21,6 +21,10 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
 
+/**
+ * POJO Test
+ */
+
 @ExtendWith(MockitoExtension.class)
 class VetControllerTest {
 
@@ -38,7 +42,11 @@ class VetControllerTest {
     @BeforeEach
     void setUp() {
         vetsList.add(new Vet());
+        Vets vets = new Vets();
+        vets.getVetList().addAll(vetsList);
+
         given(clinicService.findVets()).willReturn(vetsList);
+        //given(model.get("vets")).willReturn(vets);
     }
 
     @Test
@@ -46,9 +54,12 @@ class VetControllerTest {
         //when
         String view = controller.showVetList(model);
 
+        System.out.println("model.get(\"vets\") = " + model.get("vets"));
         //then
         then(clinicService).should(times(1)).findVets();
         then(model).should().put(anyString(), any());
+        then(model).should().get("vets");
+
         assertThat("vets/VetList").isEqualToIgnoringCase(view);
     }
 

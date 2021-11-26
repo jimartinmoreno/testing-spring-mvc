@@ -44,7 +44,6 @@ public class OwnerController {
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
     private final ClinicService clinicService;
 
-
     @Autowired
     public OwnerController(ClinicService clinicService) {
         this.clinicService = clinicService;
@@ -80,7 +79,7 @@ public class OwnerController {
 
     @RequestMapping(value = "/owners", method = RequestMethod.GET)
     public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
-
+        System.out.println("owner = " + owner);
         // allow parameterless GET request for /owners to return all records
         if (owner.getLastName() == null) {
             owner.setLastName(""); // empty string signifies broadest possible search
@@ -88,6 +87,7 @@ public class OwnerController {
 
         // find owners by last name
         Collection<Owner> results = this.clinicService.findOwnerByLastName(owner.getLastName());
+        System.out.println("results = " + results);
         if (results.isEmpty()) {
             // no owners found
             result.rejectValue("lastName", "notFound", "not found");

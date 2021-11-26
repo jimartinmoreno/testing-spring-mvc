@@ -39,4 +39,10 @@ public class Vets {
         return vets;
     }
 
+    @Override
+    public String toString() {
+        return "Vets{" +
+                "vets=" + vets +
+                '}';
+    }
 }

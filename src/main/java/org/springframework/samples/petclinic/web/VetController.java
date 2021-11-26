@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Vets;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,7 +36,6 @@ public class VetController {
 
     private final ClinicService clinicService;
 
-
     @Autowired
     public VetController(ClinicService clinicService) {
         this.clinicService = clinicService;
@@ -51,16 +51,18 @@ public class VetController {
         return "vets/vetList";
     }
 
-    @RequestMapping(value = {"/vets.json", "/vets.xml"})
-    public
-    @ResponseBody
+    //    @GetMapping(value = {"/vets.json", "/vets.xml"},
+//            headers = "Accept=application/json",
+//            produces = {"application/json", "application/xml"})
+//    @GetMapping(value = {"/vets.json", "/vets.xml"}, produces = {"application/json", "application/xml"})
+    @GetMapping(value = {"/vets.json"}, produces = {"application/json"})
+    public @ResponseBody
     Vets showResourcesVetList() {
         // Here we are returning an object of type 'Vets' rather than a collection of Vet objects
         // so it is simpler for JSon/Object mapping
         Vets vets = new Vets();
         vets.getVetList().addAll(this.clinicService.findVets());
+        System.out.println("vets = " + vets);
         return vets;
     }
-
-
 }
